@@ -20,3 +20,12 @@ describe('GET /login', function() {
             .end(done);
     });
 });
+
+describe('GET /signup', function () {
+    it("should return 2020 status code", function (done) {
+        request(app)
+            .get('/signup')
+            .expect(202)
+            .end(done);
+    });
+});

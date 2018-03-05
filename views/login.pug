@@ -2,13 +2,19 @@ extends layout
  
 block content
   .container.text-center.mt-5(style='max-width:300px;')
-    form.form-signin
+    if error !== undefined
+      .alert.alert-danger #{error.message}
+    form.form-signin(action="/login", method="post")
       img.mb-4(src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72")
       h1.h3.mb-3.font-weight-normal Please sign in
-      label.sr-only(for="inputEmail") Email address
-      input#inputEmail.form-control(type="email" placeholder="Email address" required="" autofocus="")
-      label.sr-only(for="inputPassword") Password
-      input#inputPassword.form-control(type="password" placeholder="Password" required="")
+      label.sr-only Email address
+      input.form-control(type="email" name="email" placeholder="Email address" required="" autofocus="")
+      label.sr-only Password
+      input.form-control(type="password" name="password" placeholder="Password" required="")
       br
       button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in
+      p.text-muted
+      p
+        | Not Registerd? 
+        a(href='#') sign up
       p.mt-5.mb-3.text-muted © 2017-2018

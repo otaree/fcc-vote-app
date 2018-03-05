@@ -1,5 +1,12 @@
 extends layout
 
 block content
-    h1=title
-    p Welcome to #{title}
+  .view.hm-black-strong.mt-0(id="intro")
+    .full-bg-img
+      p.text-center.text-light.font-bold.display-3.pt-5 VoteApp
+      p.text-center.text-light A simple voting app to create polls and cast votes
+      .row
+        .col-6.text-center.pt-5
+          a.btn.btn-outline-light.px-5.py-3.font-bold(role="button" href="#") Polls
+        .col-6.text-center.pt-5
+            a.btn.btn-outline-light.px-5.py-3.font-bold(role="button" href="#") Login
