@@ -1,3 +1,4 @@
+require('./config/config');
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
@@ -9,7 +10,7 @@ const app = express();
 const index = require('./routers/index.js');
 
 // connect with mongoDB
-mongoose.connect('mongodb://localhost/vote-app');
+mongoose.connect(process.env.MONGO_URI);
 const db = mongoose.connection;
 
 // view engine 

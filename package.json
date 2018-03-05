@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "mocha test/*.test.js"
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha test/*.test.js"
   },
   "author": "otaree",
   "license": "ISC",
@@ -13,6 +13,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "connect-mongo": "^2.0.1",
+    "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "lodash": "^4.17.5",
