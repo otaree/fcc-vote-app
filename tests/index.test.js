@@ -105,3 +105,65 @@ describe('CREATE User', function () {
             });
     });
 });
+
+
+describe('LOGIN User', function () {
+    it('should login a user', function (done) {
+        setTimeout(done, 5000);
+
+        const testUser = {
+            email: 'joe@test.com',
+            username: 'joe',
+            password: 'tester',
+            passwordConf: 'tester'
+        };
+        
+        indexControllers.index_create_user(testUser)
+            .then(user => {
+                return indexControllers.index_login_user({email: testUser.email, password: testUser.password})
+            })
+            .then(user => {
+                expect(user).to.be.an('object');
+                expect(user.username).to.equal(testUser.username);
+                done();
+            })
+            .catch(err => done(err));
+
+    });
+
+    it('should return "Fill the form correctly" error', function(done) {
+        indexControllers.index_login_user({})
+            .catch(err => {
+                try {
+                    expect(err.message).to.equal('Fill the form correctly');
+                } catch (e) {
+                    return done(e);
+                }
+                done();
+            });
+    });
+
+    it('should return "Wrong email or password" error', function(done) {
+        setTimeout(done, 5000);
+
+        const testUser = {
+            email: 'joe@test.com',
+            username: 'joe',
+            password: 'tester',
+            passwordConf: 'tester'
+        };
+        
+        indexControllers.index_create_user(testUser)
+            .then(user => {
+                return indexControllers.index_login_user({email: testUser.email, password: 'dfadfa'});
+            })
+            .catch(err => {
+                try {
+                    expect(err.message).to.equal('Wrong email or password');
+                } catch (e) {
+                    return done(e);
+                }
+                done();
+            });
+    });
+});
