@@ -43,7 +43,7 @@ const index_create_user = body => {
                 resolve(user);
             })
             .catch(err => {
-                let error = new Error('Something wrong with server. Try again later');
+                let error = new Error('username/email already exist');
                 reject(error);
             });
     });
