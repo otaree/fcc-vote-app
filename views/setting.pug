@@ -1,0 +1,21 @@
+extends layout
+ 
+block content
+  section.container
+    .text-center.row.mt-5
+      .col-3
+      .col-5
+        h1 Change Password
+        if success !== undefined
+          .alert.alert-success #{success.message}
+        if error !== undefined
+          .alert.alert-danger #{error.message}
+        form(action="/user/settings", method="post")
+         .form-group
+           label Current Password
+           input.form-control(type='password', name="password")
+         .form-group
+           label New Password
+           input.form-control(type='password', name="newPassword")
+         button.btn.btn-primary(type='submit') Save changes
+         p.mt-5.mb-3.text-muted © 2017-2018

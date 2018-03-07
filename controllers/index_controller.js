@@ -2,7 +2,8 @@ const User = require('../models/user');
 const _ = require('lodash');
 
 const index_login_user = body => {
-    if (Object.keys(body).length != 2) {
+    const body_arr = _.values(body).filter((item) => item.trim() !== '');
+    if (body_arr.length != 2) {
         let error = new Error('Fill the form correctly');
         return Promise.reject(error);
     }
@@ -21,7 +22,8 @@ const index_login_user = body => {
 
 
 const index_create_user = body => {
-    if (Object.keys(body).length !== 4) {
+    const body_arr = _.values(body).filter((item) => item.trim() !== '');
+    if (body_arr.length !== 4) {
         let error = new Error('Fill the form correctly');
         return Promise.reject(error);
     }

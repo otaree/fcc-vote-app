@@ -25,10 +25,10 @@ const UserSchema = mongoose.Schema({
 });
 
 UserSchema.methods.toJSON = function () {
-    const user = this;
-    const userObject = user.Object();
+    var user = this;
+    var userObject = user.toObject();
 
-    return _.pick(userObject, ["_id", "email", "username", "state"]);
+    return _.pick(userObject, ['_id', 'email']);
 };
 
 UserSchema.pre('save', function(next) {
@@ -43,6 +43,7 @@ UserSchema.pre('save', function(next) {
         });
     }
 });
+
 
 UserSchema.statics.findByCredentials = function (email, password) {
     const User = this;
@@ -62,6 +63,27 @@ UserSchema.statics.findByCredentials = function (email, password) {
             });
         });
     });
+}
+
+UserSchema.statics.findAndUpdatePassword = function (_id, password) {
+    const User = this;
+
+    return new Promise((resolve, reject) => {
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(password, salt, (err, hash) => {
+                const hashedPassword = hash;
+                User.findOneAndUpdate({ _id},{ $set: { password: hashedPassword } }, { new: true }).then(user => {
+                    if (user) {
+                        resolve(user)
+                    } else {
+                        reject(new Error('No User Found'));
+                    }
+                });
+            });
+        });
+    });
+
+
 }
 
 const User = mongoose.model('User', UserSchema);
