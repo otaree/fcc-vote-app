@@ -11,6 +11,7 @@ const app = express();
 
 const index = require('./routers/index.js');
 const user = require('./routers/user');
+const poll = require('./routers/poll');
 
 // connect with mongoDB
 mongoose.connect(process.env.MONGO_URI);
@@ -54,6 +55,7 @@ app.use(logger('dev'));
 
 app.use('/', index);
 app.use('/user', user);
+app.use('/poll', poll);
 
 
 // catch 404 and forward to error handler

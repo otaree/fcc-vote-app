@@ -7,15 +7,22 @@ html
   body
     nav.navbar.navbar-expand-sm.navbar-dark.bg-primary.mb-0
       .container
-        a.navbar-brand(href='#') VoteApp
+        a.navbar-brand(href='/') VoteApp
         ul.navbar-nav
           li.nav-item
-            a.nav-link(href='/') Home
-          li.nav-item
-            a.nav-link(href='#') About
-          li.nav-item
-            a.nav-link(href='/login') Login
-          li.nav-item
-            a.nav-link(href='/user/logout') Logout
+            a.nav-link(href='/poll/all') Polls
+          if user !== undefined
+            li.nav-item
+              a.nav-link(href='/user/profile') #{user.username}
+            i.nav-item
+              a.nav-link(href='/user/settings') Setting
+            li.nav-item
+              a.nav-link(href='/user/logout') Logout
+          else
+            li.nav-item
+              a.nav-link(href='/login') Login
+            li.nav-item
+              a.nav-link(href='/signup') Sign In
+          
 
     block content

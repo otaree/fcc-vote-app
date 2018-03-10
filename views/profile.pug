@@ -1,0 +1,28 @@
+extends layout
+ 
+block content
+  section#intro-pro
+    .jumbotron.jumbotron-fluid.half-bg-img
+      .container
+        .display-2.text-white.text-center #{user.username}
+      
+  section.container.mt-3
+    h1.text-center.text-primary My Polls
+    if polls
+      .row.justify-content-center
+        .col-8
+          ul.list-group
+            each poll in polls
+              li.list-group-item.list-group-item-action
+                .row
+                  .col-11
+                    a.text-secondary(href="/poll/"+poll._id) #{poll.question}
+                  .col-1.text-right.clickable.close-icon
+                    a.text-danger(href='#') x
+            
+            
+    else
+      .border
+        p No Polls
+    .text-center
+      a.btn.btn-outline-primary.px-4.py-2.my-2.font-bold(role="button" href="/user/createpoll") Create Poll

@@ -9,3 +9,19 @@
 .full-bg-img {
     background: rgba(0, 0, 0, 0.5); 
 }
+
+#intro-pro  {
+    height: 30%;
+}
+
+.half-bg-img  {
+    height: 100%;
+}
+
+#intro-pro {
+    background: url('/img/index.jpg') no-repeat center;
+}
+
+.half-bg-img {
+    background: rgba(0, 0, 0, 0.5); 
+}

@@ -2,8 +2,7 @@ extends layout
  
 block content
   section.container
-    .text-center.row.mt-5
-      .col-3
+    .text-center.row.mt-5.justify-content-center
       .col-5
         if error !== undefined
           .alert.alert-danger #{error.message}

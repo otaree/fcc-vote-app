@@ -1,0 +1,14 @@
+extends layout
+ 
+block content
+  section.container.mt-3
+    h1.text-center.text-primary Polls
+    if polls
+      .row.justify-content-center
+        .col-8
+          .list-group
+            each poll in polls
+              a.list-group-item.list-group-item-action(href="/poll/"+poll._id) #{poll.question}
+    else
+      .border
+        p No Polls
