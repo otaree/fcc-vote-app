@@ -4,12 +4,13 @@ block content
   section.container
     .row.mt-5.justify-content-center
       .col-5
-        h1=poll.question
-        if error !== undefined
-          .alert.alert-danger #{error.message}
-        form.ml-3(action="/poll/vote", method="post")
-          each option in poll.options
-            .form-check
-              input.form-check-input(type="radio", name="text", id=option.text,value=option.text)
-              label.form-check-label(for=option.text) #{option.text}
-          button.btn.btn-primary.mt-3(type='submit') Vote
+        .card
+          .card-header
+            h1 #{poll.question} 
+              small by #{poll.author.username}
+          .card-body
+            ul.list-group
+              each option in poll.options
+                li.list-group-item.d-flex.justify-content-between.align-items-center #{option.text} 
+                  span.badge.badge-info.badge-pill #{option.votes}
+              
